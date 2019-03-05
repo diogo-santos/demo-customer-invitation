@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="footer" th:align="center" class="footer">
+        <br> &copy; <span th:text="${#temporals.format(#temporals.createNow(),'yyyy')}">...</span>
+        <span th:text="#{application.name}">...</span>
+        <br>
+        <br>
+    </div>
+</body>
+</html>

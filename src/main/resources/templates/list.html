@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/layout}" lang="en">
+<head>
+    <title>Search</title>
+</head>
+<body>
+    <div layout:fragment="content" align="center">
+            <div class="table-responsive-md">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="customer:${customers}">
+                        <tr>
+                            <th scope="row" th:text="${customer.userId}">...</th>
+                            <td th:text="${customer.name}"></td>
+                        </tr>
+                    </th:block>
+                    </tbody>
+                </table>
+                <div th:if="${#lists.isEmpty(list)}">
+                    <span th:text="#{emptyList}"></span>
+                </div>
+            </div>
+    </div>
+</body>
+</html>

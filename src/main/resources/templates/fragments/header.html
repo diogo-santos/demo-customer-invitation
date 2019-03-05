@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="header">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="#" th:text="#{application.name}">...</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarDemo" aria-controls="navbarDemo" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarDemo">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" th:classappend="${module == 'search'?'active':''}">
+                    <a class="nav-link" href="#" th:href="@{/list}">Invitation list</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+</div>
+</body>
+</html>
