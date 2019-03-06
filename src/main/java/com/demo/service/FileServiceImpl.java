@@ -31,7 +31,9 @@ public class FileServiceImpl implements FileService {
             logger.error(e.getMessage(), e);
         }
         logger.debug("Out getFile with '{}'", inputStream);
-        return inputStream;
+        return Optional
+                .ofNullable(inputStream)
+                .orElseThrow(()-> new NoSuchElementException("Error accessing file list"));
     }
 
     @Override
@@ -39,12 +41,8 @@ public class FileServiceImpl implements FileService {
         logger.debug("In getListFromFile with '{}' '{}'", url, typeReference);
         Optional.ofNullable(typeReference)
                 .orElseThrow(()-> new NoSuchElementException("Type reference not provided"));
-        String listType = typeReference.getType().getTypeName() + " list";
 
         InputStream inputStream = this.getFile(url);
-        Optional.ofNullable(inputStream)
-                .orElseThrow(()-> new NoSuchElementException("Error accessing "+listType));
-
         List<?> list = null;
         ObjectMapper mapper = new ObjectMapper();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
@@ -64,6 +62,6 @@ public class FileServiceImpl implements FileService {
         logger.debug("Out getListFromFile with '{}'", list);
         return Optional
                 .ofNullable(list)
-                .orElseThrow(()-> new NoSuchElementException("Error reading "+listType));
+                .orElseThrow(()-> new NoSuchElementException("Error reading file list"));
     }
 }
