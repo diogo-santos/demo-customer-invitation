@@ -1,5 +1,5 @@
 # demo-customer-invitation
-## What was build
+
 Demo project for Customer invitation using Spring Boot
 ## What you'll need
 Java 1.8
